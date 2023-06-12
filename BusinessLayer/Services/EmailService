@@ -38,7 +38,7 @@ namespace BusinessLayer.Services
             }).ToList();
         }
 
-        protected override Category MapToModel(EmailDto dto)
+        protected override Email MapToModel(EmailDto dto)
         {
             return new Email
             {

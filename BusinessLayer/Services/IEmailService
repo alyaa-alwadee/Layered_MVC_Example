@@ -1,0 +1,10 @@
+using MVC_Example.DataAccessLayer.Models;
+using MVC_Example.Dtos;
+
+namespace BusinessLayer.Services
+{
+    public interface IEmailService : ICrudService<ProductDto> 
+    {
+        Task Purchase(Country country);
+    }
+}

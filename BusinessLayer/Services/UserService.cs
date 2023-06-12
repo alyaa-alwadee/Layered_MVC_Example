@@ -51,5 +51,18 @@ namespace BusinessLayer.Services
                 CreatedDate = t.CreatedDate,
             }).ToList();
         }
+        private readonly IEmailService emailService;
+
+        public UserService(IEmailService emailService)
+        {
+            this.emailService = emailService;
+        }
+
+        public void SendWelcomeEmail(string to)
+        {
+            string subject = "Welcome to our website";
+            string body = "Thank you for joining our website. We hope you enjoy your experience!";
+            emailService.SendEmail(to, subject, body);
+        }
     }
 }

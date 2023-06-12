@@ -1,0 +1,52 @@
+﻿using MVC_Example.BusinessLayer.Services;
+using MVC_Example.DataAccessLayer.Models;
+using MVC_Example.DataAccessLayer.Repositories;
+using MVC_Example.Dtos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessLayer.Services
+{
+    public class EmailService : BaseCrudService<CategoryDto, Category>
+    {
+        public EmailService(IEmailService<Email> repo) : base(repo)
+        {
+        }
+
+        protected override EmailDto MapToDto(Category model)
+        {
+            return new EmailDto
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Description = model.Description,
+                CreatedDate = model.CreatedDate
+            };
+        }
+
+        protected override List<EmailDto> MapToDtoList(List<Email> data)
+        {
+            return data.Select(t => new CategoryDto
+            {
+                Id = t.Id,
+                Name = t.Name,
+                Description = t.Description,
+                CreatedDate = t.CreatedDate
+            }).ToList();
+        }
+
+        protected override Category MapToModel(EmailDto dto)
+        {
+            return new Email
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                CreatedDate = dto.CreatedDate,
+                Description = dto.Description
+            };
+        }
+    }
+}

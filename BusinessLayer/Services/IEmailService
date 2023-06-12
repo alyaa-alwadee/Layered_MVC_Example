@@ -5,6 +5,6 @@ namespace BusinessLayer.Services
 {
     public interface IEmailService : ICrudService<ProductDto> 
     {
-        Task Purchase(Email email);
+        void Purchase(Email email);
     }
 }

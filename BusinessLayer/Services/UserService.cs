@@ -58,11 +58,11 @@ namespace BusinessLayer.Services
             this.emailService = emailService;
         }
 
-        public void SendWelcomeEmail(string to)
+        public void sendemail(string to)
         {
             string subject = "Welcome to our website";
             string body = "Thank you for joining our website. We hope you enjoy your experience!";
-            emailService.SendEmail(to, subject, body);
+            emailService.Purchase(to, subject, body);
         }
     }
 }

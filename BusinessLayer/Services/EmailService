@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Services
 {
-    public class EmailService : BaseCrudService<CategoryDto, Category>
+    public class EmailService : BaseCrudService<EmailDto, Email>
     {
         public EmailService(IEmailService<Email> repo) : base(repo)
         {
         }
 
-        protected override EmailDto MapToDto(Category model)
+        protected override EmailDto MapToDto(email model)
         {
             return new EmailDto
             {

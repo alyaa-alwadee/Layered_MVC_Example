@@ -1,0 +1,64 @@
+using MVC_Example.BusinessLayer.Services;
+using MVC_Example.DataAccessLayer.Models;
+using MVC_Example.DataAccessLayer.Repositories;
+using MVC_Example.Dtos;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BusinessLayer.Services
+{
+    public class CountryService : BaseCrudService<ProductDto, Product>, ICountryService
+    {
+        public CountryService(ICountryRepository<Country> repo) : base(repo)
+        {
+        }
+
+        public Task Purchase(Country country)
+        {
+            // do purchase logic
+
+            return Task.CompletedTask;
+        }
+        protected override CountryDto MapToDto(Country model)
+        {
+            return new CountryDto
+            {
+                Id = model.Id,
+                Name = model.Name,
+                CategoryId = model.CategoryId,
+                CreatedDate = model.CreatedDate,
+                Description = model.Description,
+                Price = model.Price,
+            };
+        }
+
+        protected override List<CountryDto> MapToDtoList(List<Country> data)
+        {
+            return data.Select(t => new CountryDto
+            {
+                Id = t.Id,
+                Name = t.Name,
+                CategoryId = t.CategoryId,
+                CreatedDate = t.CreatedDate,
+                Description = t.Description,
+                Price = t.Price,
+            }).ToList();
+        }
+
+        protected override Country MapToModel(CountryDto dto)
+        {
+            return new Country
+            {
+                CategoryId = dto.CategoryId,
+                Name = dto.Name,
+                Description = dto.Description,
+                Id = dto.Id,
+                Price = dto.Price,
+                CreatedDate = dto.CreatedDate
+            };
+        }
+    }
+}
